@@ -11,6 +11,7 @@ import {
   Github,
   Globe,
   Gamepad2,
+  Forward,
 } from "lucide-react";
 import Surface from "./components/01_Surface";
 
@@ -125,7 +126,7 @@ export default function App() {
           {rescueStatus === "success" && (
             <button
               onClick={handleReset}
-              className="flex items-center gap-1 text-[10px] sm:text-xs font-bold text-blue-500 hover:bg-blue-100 transition-colors bg-blue-50 px-3 py-1.5 rounded-full active:scale-95"
+              className="flex items-center gap-1 text-[10px] sm:text-xs font-bold text-blue-300 hover:bg-blue-100 transition-colors bg-blue-50 px-3 py-1.5 rounded-full active:scale-95"
             >
               <RotateCcw size={14} /> RESTART
             </button>
@@ -153,7 +154,7 @@ export default function App() {
               Lola's Signal
             </span>
           </div>
-          <div className="bg-white rounded-xl p-3 text-center min-h-[44px] flex items-center justify-center border border-slate-50">
+          <div className="bg-white rounded-xl p-3 text-center min-h-11 flex items-center justify-center border border-slate-50">
             <p
               className={`text-sm font-medium ${lolaMessage ? "text-slate-600" : "text-slate-300 italic"}`}
             >
@@ -181,38 +182,44 @@ export default function App() {
         </div>
       </div>
 
-      {/* --- STORY MODAL: Glassmorphism & High-end feeling --- */}
+      {/* --- STORY MODAL: Glassmorphism & Nature Tone --- */}
       {isStoryActive && (
         <div className="fixed inset-0 bg-slate-900/40 backdrop-blur-sm z-50 flex items-center justify-center p-6">
           <div className="bg-white/95 backdrop-blur-lg rounded-[2.5rem] p-8 max-w-sm w-full text-center shadow-2xl animate-in zoom-in-95 duration-300 border border-white/50 relative overflow-hidden">
-            {/* ตกแต่งด้วยวงกลมสีจางๆ ใน Popup ให้ดูมีเลเยอร์ */}
-            <div className="absolute -top-10 -left-10 w-32 h-32 bg-blue-50 rounded-full blur-3xl opacity-50" />
-            <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-pink-50 rounded-full blur-3xl opacity-50" />
+            {/* วงกลมแสงจางๆ ด้านหลัง (ปรับให้เป็นสีโทนธรรมชาติ) */}
+            <div className="absolute -top-10 -left-10 w-32 h-32 bg-emerald-50 rounded-full blur-3xl opacity-60" />
+            <div className="absolute -bottom-10 -right-10 w-32 h-32 bg-amber-50 rounded-full blur-3xl opacity-60" />
 
             {rescueStatus === "calling" && (
               <div className="relative">
                 <div className="w-20 h-20 bg-red-50 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-red-100">
-                  <Siren className="text-red-500 animate-pulse" size={32} />
+                  <Siren className="text-red-400 animate-pulse" size={32} />
                 </div>
                 <h2 className="text-2xl font-black tracking-widest text-slate-800 mb-2 uppercase">
                   Signal Detected!
                 </h2>
-                <p className="text-sm font-medium text-slate-500 mb-8">
+                <p className="text-sm font-medium text-slate-500 mb-8 px-4">
                   Lola needs help. Let's find a partner!
                 </p>
+
+                {/* ปุ่มสไตล์ Forest: พื้นเขียวอ่อนขุ่น -> Hover แล้วเข้มขึ้นนิดนึง + ไอคอนขยับ */}
                 <button
                   onClick={handleNextStep}
-                  className="w-full bg-slate-800 text-white py-4 rounded-2xl font-bold tracking-wider flex items-center justify-center gap-2 hover:bg-blue-600 hover:shadow-lg hover:shadow-blue-100 transition-all active:scale-95"
+                  className="w-full bg-emerald-50 text-emerald-700 py-4 rounded-2xl font-bold tracking-wider flex items-center justify-center gap-2 border border-emerald-100/50 hover:bg-emerald-100 transition-all duration-300 group active:scale-95"
                 >
-                  FIND HERO <FastForward size={18} />
+                  FIND HERO
+                  <Forward
+                    size={18}
+                    className="group-hover:translate-x-1 transition-transform"
+                  />
                 </button>
               </div>
             )}
 
             {rescueStatus === "recruiting" && pokemon && (
               <div className="relative">
-                <div className="w-20 h-20 bg-yellow-50 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-yellow-100">
-                  <Sparkles className="text-yellow-500" size={32} />
+                <div className="w-20 h-20 bg-amber-50 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-amber-100">
+                  <Sparkles className="text-amber-500" size={32} />
                 </div>
                 <h2 className="text-2xl font-black tracking-widest text-slate-800 mb-2 uppercase">
                   New Ally!
@@ -227,34 +234,46 @@ export default function App() {
                 <p className="text-lg font-black tracking-widest text-slate-600 mb-8 uppercase">
                   {pokemon.name}
                 </p>
+
+                {/* ปุ่มสไตล์ Sunlight: พื้นเหลืองนวล -> Hover แล้วนวลขึ้น */}
                 <button
                   onClick={handleNextStep}
-                  className="w-full bg-slate-800 text-white py-4 rounded-2xl font-bold tracking-wider flex items-center justify-center gap-2 hover:bg-blue-300 hover:shadow-lg hover:shadow-blue-100 transition-all active:scale-95"
+                  className="w-full bg-amber-50 text-amber-700 py-4 rounded-2xl font-bold tracking-wider flex items-center justify-center gap-2 border border-amber-100/50 hover:bg-amber-100 transition-all duration-300 group active:scale-95"
                 >
-                  LET'S GO! <FastForward size={18} />
+                  LET'S GO!
+                  <Forward
+                    size={18}
+                    className="group-hover:translate-x-1 transition-transform"
+                  />
                 </button>
               </div>
             )}
 
             {rescueStatus === "traveling" && (
               <div className="relative">
-                <div className="w-20 h-20 bg-orange-50 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-orange-100">
+                <div className="w-20 h-20 bg-slate-50 rounded-full flex items-center justify-center mx-auto mb-4 border-2 border-slate-100">
                   <PawPrint
-                    className="text-blue-300 animate-bounce"
+                    className="text-slate-400 animate-bounce"
                     size={32}
                   />
                 </div>
                 <h2 className="text-2xl font-black tracking-widest text-slate-800 mb-2 uppercase">
                   Travelling...
                 </h2>
-                <p className="text-sm font-medium text-slate-500 mb-8">
+                <p className="text-sm font-medium text-slate-500 mb-8 px-4">
                   Passing through the dark forest.
                 </p>
+
+                {/* ปุ่มสไตล์ Deep Wood: พื้นเทาขุ่น -> Hover แล้วดูนิ่งสงบ */}
                 <button
                   onClick={handleNextStep}
-                  className="w-full bg-slate-800 text-white py-4 rounded-2xl font-bold tracking-wider flex items-center justify-center gap-2 hover:bg-blue-300 hover:shadow-lg hover:shadow-blue-100 transition-all active:scale-95"
+                  className="w-full bg-slate-100 text-slate-600 py-4 rounded-2xl font-bold tracking-wider flex items-center justify-center gap-2 border border-slate-200/50 hover:bg-slate-200 transition-all duration-300 group active:scale-95"
                 >
-                  ENTER DUNGEON <FastForward size={18} />
+                  ENTER DUNGEON
+                  <Forward
+                    size={18}
+                    className="group-hover:translate-x-1 transition-transform"
+                  />
                 </button>
               </div>
             )}

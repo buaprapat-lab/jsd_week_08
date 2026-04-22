@@ -65,7 +65,7 @@ export default function Dungeon({
 
       {/* ---------------- 2. CHARACTER ZONE ---------------- */}
       {/* ปรับความสูงและระยะห่างให้ Responsive */}
-      <div className="flex items-center justify-center gap-4 sm:gap-6 mb-8 sm:mb-10 min-h-[160px] sm:min-h-[200px]">
+      <div className="flex items-center justify-center gap-4 sm:gap-6 mb-8 sm:mb-10 min-h-4 sm:min-h-[200px]">
         {/* กรอบรูปภาพ Lola ปรับขนาด w-32 บนมือถือ w-40 บนจอใหญ่ */}
         <div
           className={`relative w-32 h-32 sm:w-40 sm:h-40 rounded-full border-4 border-slate-50 shadow-sm overflow-hidden bg-white transition-all duration-500
