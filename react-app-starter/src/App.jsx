@@ -4,6 +4,7 @@
 
 import { useState } from "react";
 import Castle from "./components/Castle";
+import SimpleAsyncAwait from "./example/async/SimpleAsyncAwait";
 
 export default function App() {
   const [question, setQuestion] = useState("");
@@ -40,6 +41,13 @@ export default function App() {
     </div>
   );
 }
+
+// สร้าง feature ช่วยเพื่อนที่ถุฏจับข้างในที่ถูกจับ
+/* ถ้าข้างในบอก chill chill ก็ไม่เกิดอะไรขึ้น อจ่ถ้าตอบมาว่า
+สักอย่างขะ fetch pokemon แล้วเอาโปเกม่อนไปช่วย กระโดด
+ขึ้นญาณ ใช้ usestate เปลี่ยนแปลง useeffect
+เช่นถ้า help me จะเกิด option ขึ้นมาข้างนอก
+*/
 
 /*
 import { useState } from "react";
